@@ -85,11 +85,6 @@
                                     <action selector="InsertData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exc-be-xGC"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="１０" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXL-z5-xdk">
-                                <rect key="frame" x="245" y="262" width="310" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="33"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="０" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s59-wZ-dXf">
                                 <rect key="frame" x="245" y="322" width="310" height="40"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="33"/>
@@ -106,6 +101,11 @@
                                 <rect key="frame" x="100" y="466" width="544" height="547"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="１０" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXL-z5-xdk">
+                                <rect key="frame" x="245" y="268" width="310" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="33"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="lightTextColor"/>
@@ -162,10 +162,6 @@
                         <outlet property="classifyExpenseButton" destination="KW8-YP-7PH" id="R3x-KF-avO"/>
                         <outlet property="incomeExpenseButton" destination="2HP-sJ-bEU" id="KHF-Lj-uS9"/>
                         <outlet property="tableView" destination="Apx-zw-ARt" id="0bq-4t-w10"/>
-                        <outlet property="tableViewBottomConstraint" destination="JSf-L0-rXb" id="srH-ZI-mIk"/>
-                        <outlet property="tableViewLeadingConstraint" destination="Lxk-4m-jZD" id="iR1-KO-LL4"/>
-                        <outlet property="tableViewTopConstraint" destination="yPd-3s-QYZ" id="j0m-s0-cHj"/>
-                        <outlet property="tableViewTrailingConstraint" destination="cCW-Hr-KVX" id="oaz-gL-riq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

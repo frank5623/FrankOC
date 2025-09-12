@@ -5,15 +5,15 @@
 //  Created by chiuyifan on 2025/9/10.
 //
 
-#import <UIKit/UIKit.h>
-@interface ViewController : UIViewController
+#import <UIKit/UIKit.h>                         //讓 ViewController 遵守 UITextFieldDelegate 協定。
+@interface ViewController : UIViewController <UITextFieldDelegate>
 
 
-// 沒用到，但連都連了 => 建立你需要修改的約束屬性
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewLeadingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTrailingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
+//// 沒用到，但連都連了 => 建立你需要修改的約束屬性
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewLeadingConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTrailingConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
 ///---------------------------------------------------
 // 這不是必需的，但如果你想在程式碼中修改按鈕的標題或樣式，它會很有用

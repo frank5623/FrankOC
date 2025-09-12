@@ -23,6 +23,9 @@
     // 初始化收入和支出的分類陣列 以後只需要在這裡改了
     self.incomeCategories = @[@"薪資", @"獎金", @"投資收入", @"其他收入"];
     self.expenseCategories = @[@"餐飲", @"交通", @"娛樂", @"購物", @"居家", @"其他支出"];
+    
+    self.Money.delegate=self;
+    self.Notes.delegate=self;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -32,12 +35,6 @@
     self.incomeExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
     self.classifyExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
 }
-
-
-
-
-
-
 
 //分類_已完成
 - (IBAction)Classify:(id)sender {
@@ -127,7 +124,44 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+
+    if (textField == self.Money) {
+        // 取得輸入後完整的字串
+           NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+           // ----------------------
+           // 檢查 1: 只允許輸入數字
+           // ----------------------
+           NSCharacterSet *numbersOnly = [NSCharacterSet decimalDigitCharacterSet];
+           NSCharacterSet *stringSet = [NSCharacterSet characterSetWithCharactersInString:string];
+           if (![numbersOnly isSupersetOfSet:stringSet]) {
+               return NO; // 如果有非數字字元，拒絕輸入
+           }
+
+           // ----------------------
+           // 檢查 2: 限制在 int 的範圍內
+           // ----------------------
+           if ([newString length] > 0) {
+               // 將字串轉為 long long 來檢查是否超出 int 的最大值
+               long long intValue = [newString longLongValue];
+               if (intValue > INT_MAX) {
+                   return NO; // 如果超過 int 最大值，拒絕輸入
+               }
+           }
+            
+           return YES; // 如果通過所有檢查，允許輸入
+    }else{
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if(newString.length>7){
+            return  NO;
+        }
+        return YES;
+    }
+}
 //新增資料
 - (IBAction)InsertData:(id)sender {
+    
 }
 @end
