@@ -1,0 +1,133 @@
+//
+//  ViewController.m
+//  BillCount
+//
+//  Created by chiuyifan on 2025/9/10.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()
+
+// 將分類名稱儲存在私有屬性中 因為有點多，所以簡短程式比較好看
+@property (strong, nonatomic) NSArray *incomeCategories;
+@property (strong, nonatomic) NSArray *expenseCategories;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad { //初始化
+    [super viewDidLoad];
+    
+    // 初始化收入和支出的分類陣列 以後只需要在這裡改了
+    self.incomeCategories = @[@"薪資", @"獎金", @"投資收入", @"其他收入"];
+    self.expenseCategories = @[@"餐飲", @"交通", @"娛樂", @"購物", @"居家", @"其他支出"];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    // 在這裡設定字型，確保它在所有佈局完成後執行
+    self.incomeExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+    self.classifyExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+}
+
+
+
+
+
+
+
+//分類_已完成
+- (IBAction)Classify:(id)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"請選擇分類"
+                                                                           message:nil
+                                                                    preferredStyle:UIAlertControllerStyleActionSheet];
+
+    // 決定要使用哪個陣列
+    NSArray *categoriesToUse;
+    if (self.isIncome) {
+        categoriesToUse = self.incomeCategories;
+    } else {
+        categoriesToUse = self.expenseCategories;
+    }
+
+    // 透過迴圈動態建立並新增選項
+    for (NSString *categoryName in categoriesToUse) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:categoryName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 在這裡處理選擇的分類
+            // 設定按鈕的文字
+            [self.classifyExpenseButton setTitle:categoryName forState:UIControlStateNormal];
+
+            // 設定按鈕文字的字型為 Helvetica Neue Bold，大小為 35.0
+            self.classifyExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+            //NSLog(@"使用者選擇了：%@", categoryName);
+        }];
+        [alertController addAction:action];
+    }
+
+    // 新增取消選項
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+
+    // 解決 iPad 上的錯誤：為 Popover 設定來源
+    // 檢查裝置是否為 iPad，因為在 iPhone 上不需要這段程式碼
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        alertController.popoverPresentationController.sourceView = sender;
+        alertController.popoverPresentationController.sourceRect = [sender bounds];
+    }
+    
+    // 顯示 Alert Controller
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+///------------------------------------------------------------------------------------------------------------------
+//收入或分支_已完成
+- (IBAction)InputOrOutpub:(id)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"請選擇收入或支出"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    // 建立「支出」選項
+    UIAlertAction *expenseAction = [UIAlertAction actionWithTitle:@"支出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 設定按鈕的文字
+        [self.incomeExpenseButton setTitle:@"支出" forState:UIControlStateNormal];
+
+        // 設定按鈕文字的字型為 Helvetica Neue Bold，大小為 35.0
+        self.incomeExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+        self.isIncome = 0;
+    }];
+    [alertController addAction:expenseAction];
+    
+    // 建立「收入」選項
+    UIAlertAction *incomeAction = [UIAlertAction actionWithTitle:@"收入" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 設定按鈕的文字
+        [self.incomeExpenseButton setTitle:@"收入" forState:UIControlStateNormal];
+
+        // 設定按鈕文字的字型為 Helvetica Neue Bold，大小為 35.0
+        self.incomeExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+        self.isIncome = 1;
+        
+        //原本字型寫下來
+        //self.incomeExpenseButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
+        
+    }];
+    [alertController addAction:incomeAction];
+    
+    // 建立「取消」選項
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    
+    // 解決 iPad 上的錯誤：為 Popover 設定來源
+    // 檢查裝置是否為 iPad，因為在 iPhone 上不需要這段程式碼
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        alertController.popoverPresentationController.sourceView = sender;
+        alertController.popoverPresentationController.sourceRect = [sender bounds];
+    }
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+//新增資料
+- (IBAction)InsertData:(id)sender {
+}
+@end
