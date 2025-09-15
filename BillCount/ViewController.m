@@ -20,12 +20,19 @@
 - (void)viewDidLoad { //初始化
     [super viewDidLoad];
     
+    
     // 初始化收入和支出的分類陣列 以後只需要在這裡改了
     self.incomeCategories = @[@"薪資", @"獎金", @"投資收入", @"其他收入"];
     self.expenseCategories = @[@"餐飲", @"交通", @"娛樂", @"購物", @"居家", @"其他支出"];
     
+    // 初始化資料陣列
+    self.transactions = [[NSMutableArray alloc] init];
+    
+    // 設定代理 =>chatgpt叫我加的
     self.Money.delegate=self;
     self.Notes.delegate=self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self; // 建議加上，以處理未來使用者互動
 }
 
 - (void)viewDidLayoutSubviews {
@@ -125,6 +132,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+//輸入規則
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
     if (textField == self.Money) {
@@ -152,7 +160,7 @@
            }
             
            return YES; // 如果通過所有檢查，允許輸入
-    }else{
+    }else{ //剩下self.note
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         if(newString.length>7){
             return  NO;
@@ -163,5 +171,51 @@
 //新增資料
 - (IBAction)InsertData:(id)sender {
     
+    if (self.Money.text.length > 0) {
+        // 從 UI 元件取得資料
+        NSString *category = [self.classifyExpenseButton titleForState:UIControlStateNormal];
+        NSString *notes = self.Notes.text.length > 0 ? self.Notes.text : @"無備註";
+        NSString *type = self.isIncome ? @"收入" : @"支出";
+        
+        // 組合新資料字串
+        NSString *newData = [NSString stringWithFormat:@"%@ - %@ - %@: %@", type, category, self.Money.text, notes];
+        
+        // 將新資料添加到陣列中
+        [self.transactions addObject:newData];
+        
+        // 通知 UITableView 重新載入資料
+        [self.tableView reloadData];
+        
+        // 清空輸入框
+        self.Money.text = @"";
+        self.Notes.text = @"";
+    }
 }
+
+// 根據資料陣列的數量回傳行數
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.transactions.count;
+}
+
+// 建立並設定每個單元格的內容
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    if (indexPath.row < self.transactions.count) {
+        NSString *rowData = self.transactions[indexPath.row];
+        cell.textLabel.text = rowData;
+    }
+    
+    return cell;
+}
+
+
+
+
 @end
