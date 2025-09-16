@@ -63,7 +63,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KW8-YP-7PH">
                                 <rect key="frame" x="245" y="207" width="310" height="30"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                <buttonConfiguration key="configuration" style="plain" title="餐飲">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -86,7 +86,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="僅能輸入７個字元" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s59-wZ-dXf">
-                                <rect key="frame" x="245" y="322" width="310" height="40"/>
+                                <rect key="frame" x="245" y="321" width="310" height="59"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="33"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -112,7 +112,7 @@
                                 </prototypes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="僅能輸入10位數" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXL-z5-xdk">
-                                <rect key="frame" x="245" y="268" width="310" height="49"/>
+                                <rect key="frame" x="245" y="270" width="310" height="49"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="33"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -136,7 +136,7 @@
                             <constraint firstItem="tUq-7h-tqM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="250" id="JHz-vb-iMk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Apx-zw-ARt" secondAttribute="bottom" constant="100" id="JSf-L0-rXb"/>
                             <constraint firstItem="sXL-z5-xdk" firstAttribute="top" secondItem="KW8-YP-7PH" secondAttribute="bottom" constant="25" id="Jd3-Kw-Hre"/>
-                            <constraint firstItem="s59-wZ-dXf" firstAttribute="height" secondItem="sXL-z5-xdk" secondAttribute="height" multiplier="1.33333" id="Jd6-s5-eRZ"/>
+                            <constraint firstItem="s59-wZ-dXf" firstAttribute="height" secondItem="sXL-z5-xdk" secondAttribute="height" constant="10" id="Jd6-s5-eRZ"/>
                             <constraint firstItem="4bb-8k-Fdj" firstAttribute="top" secondItem="WgK-jY-qyE" secondAttribute="bottom" constant="1" id="L9m-Bh-Fiq"/>
                             <constraint firstItem="Apx-zw-ARt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="Lxk-4m-jZD"/>
                             <constraint firstItem="2HP-sJ-bEU" firstAttribute="width" secondItem="tUq-7h-tqM" secondAttribute="width" constant="10" id="OVs-Xv-YWP"/>
@@ -149,11 +149,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Apx-zw-ARt" secondAttribute="trailing" constant="100" id="cCW-Hr-KVX"/>
                             <constraint firstItem="WgK-jY-qyE" firstAttribute="width" secondItem="QsK-9v-gGX" secondAttribute="width" id="ckI-5w-TuK"/>
                             <constraint firstItem="2HP-sJ-bEU" firstAttribute="centerX" secondItem="tUq-7h-tqM" secondAttribute="centerX" id="dUK-Nl-jcP"/>
-                            <constraint firstItem="s59-wZ-dXf" firstAttribute="top" secondItem="sXL-z5-xdk" secondAttribute="bottom" constant="30" id="eH7-qA-efL"/>
+                            <constraint firstItem="s59-wZ-dXf" firstAttribute="top" secondItem="sXL-z5-xdk" secondAttribute="bottom" constant="10" id="eH7-qA-efL"/>
                             <constraint firstItem="2HP-sJ-bEU" firstAttribute="height" secondItem="tUq-7h-tqM" secondAttribute="height" id="gXx-cs-hle"/>
                             <constraint firstItem="lQY-tJ-4ph" firstAttribute="top" secondItem="4bb-8k-Fdj" secondAttribute="bottom" constant="22" id="hwD-B2-Qe1"/>
                             <constraint firstItem="KW8-YP-7PH" firstAttribute="width" secondItem="2HP-sJ-bEU" secondAttribute="width" id="ik1-Xg-GU5"/>
-                            <constraint firstItem="sXL-z5-xdk" firstAttribute="height" secondItem="KW8-YP-7PH" secondAttribute="height" id="jvr-KU-wKu"/>
+                            <constraint firstItem="sXL-z5-xdk" firstAttribute="height" secondItem="KW8-YP-7PH" secondAttribute="height" constant="19" id="jvr-KU-wKu"/>
                             <constraint firstItem="s59-wZ-dXf" firstAttribute="width" secondItem="sXL-z5-xdk" secondAttribute="width" id="m85-x9-6Ot"/>
                             <constraint firstItem="7WQ-bX-XQa" firstAttribute="centerX" secondItem="3QJ-0W-y5U" secondAttribute="centerX" id="nRm-Dx-a62"/>
                             <constraint firstItem="WgK-jY-qyE" firstAttribute="top" secondItem="QsK-9v-gGX" secondAttribute="bottom" constant="1" id="oKE-Qx-QY9"/>

@@ -26,6 +26,7 @@
     self.expenseCategories = @[@"餐飲", @"交通", @"娛樂", @"購物", @"居家", @"其他支出"];
     
     // 初始化資料陣列
+    //self.transactions *class=[transactions now];
     self.transactions = [[NSMutableArray alloc] init];
     
     // 設定代理 =>chatgpt叫我加的
@@ -100,6 +101,13 @@
         // 設定按鈕文字的字型為 Helvetica Neue Bold，大小為 35.0
         self.incomeExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
         self.isIncome = 0;
+        // --- 新增以下程式碼：自動設定分類按鈕 ---
+        // 取得支出分類的第一個選項並設定按鈕標題
+        if (self.expenseCategories.count > 0) {
+            NSString *firstExpenseCategory = self.expenseCategories[0];
+            [self.classifyExpenseButton setTitle:firstExpenseCategory forState:UIControlStateNormal];
+            self.classifyExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+        }
     }];
     [alertController addAction:expenseAction];
     
@@ -111,10 +119,16 @@
         // 設定按鈕文字的字型為 Helvetica Neue Bold，大小為 35.0
         self.incomeExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
         self.isIncome = 1;
+        // 自動設定分類按鈕
+        // 取得收入分類的第一個選項並設定按鈕標題
+        if (self.incomeCategories.count > 0) { // <--- 這裡已經修正為 incomeCategories
+            NSString *firstIncomeCategory = self.incomeCategories[0];
+            [self.classifyExpenseButton setTitle:firstIncomeCategory forState:UIControlStateNormal];
+            self.classifyExpenseButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:35.0];
+        }
         
         //原本字型寫下來
         //self.incomeExpenseButton.titleLabel.font = [UIFont systemFontOfSize:20.0];
-        
     }];
     [alertController addAction:incomeAction];
     
@@ -128,6 +142,8 @@
         alertController.popoverPresentationController.sourceView = sender;
         alertController.popoverPresentationController.sourceRect = [sender bounds];
     }
+    
+    
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -171,6 +187,8 @@
 //新增資料
 - (IBAction)InsertData:(id)sender {
     
+    
+    
     if (self.Money.text.length > 0) {
         // 從 UI 元件取得資料
         NSString *category = [self.classifyExpenseButton titleForState:UIControlStateNormal];
@@ -186,6 +204,25 @@
         // 通知 UITableView 重新載入資料
         [self.tableView reloadData];
         
+        // ------------------
+        // 新增以下程式碼：顯示「新增成功」提示
+        // ------------------
+                
+        // 1. 創建一個 UIAlertController
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新增成功"
+                                                                             message:@"您的記帳資料已成功新增！"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                
+                // 2. 創建一個「確定」按鈕
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"確定"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:nil]; // handler 為 nil 表示點擊後不做任何事，只關閉視窗
+                
+                // 3. 將按鈕加入到 Alert Controller
+        [alert addAction:okAction];
+                
+                // 4. 顯示 Alert Controller
+        [self presentViewController:alert animated:YES completion:nil];
         // 清空輸入框
         self.Money.text = @"";
         self.Notes.text = @"";
